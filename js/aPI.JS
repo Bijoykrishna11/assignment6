@@ -20,8 +20,21 @@ const setAllMenu = async () => {
     const li = document.createElement("li");
     li.classList.add('list-group-item');
     li.innerHTML = `<a class="text-decoration-none" href="#" onclick="displayNews(this)">${product.category_name}</a>`;
-    menu.appendChild(li);
 
+    menu.appendChild(li);
+    // start loader
+    toggleSpinner(true);
+  }
+}
+// Loader
+
+const toggleSpinner = isLoading => {
+  const LoaderSection = document.getElementById('loader');
+  if (isLoading) {
+    LoaderSection.classList.remove('d-nne')
+  }
+  else {
+    LoaderSection.classList.add('d-none')
   }
 }
 
@@ -81,10 +94,10 @@ const displayNews = async (value) => {
                     </div>
 
                     <div>
-                        <span>${view != undefined ? view : "N/A"} views</span>
+                        <span>${view != undefined ? view : "No"} views</span>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-secondary">More details</button>
+                        <button onclick="newsDetails('${data.id}')" type="button" class="btn btn-success">More details</button>
                     </div>
                 </div>
 
@@ -97,6 +110,7 @@ const displayNews = async (value) => {
   }
   );
 }
+
 
 
 
