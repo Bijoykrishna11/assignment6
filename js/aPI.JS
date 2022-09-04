@@ -60,6 +60,7 @@ const displayNews = async (value) => {
 
     const getId = document.getElementById('news-bd');
     const div = document.createElement('div');
+    getId.innerHTML = " ";
     div.innerHTML = `
     <div class="card mb-3" style="width:100%;">
     <div class="row g-0">
@@ -74,11 +75,11 @@ const displayNews = async (value) => {
                 <div class="d-flex justify-content-between">
                     <div>
                         <img src="${authorImg}" alt="" style="width: 50px;">
-                        <span>${author}</span>
+                        <span>${author != undefined ? author : "N/A"}</span>
                     </div>
 
                     <div>
-                        <span>${view} </span>
+                        <span>${view != undefined ? view : "N/A"} views</span>
                     </div>
                     <div>
                         <button type="button" class="btn btn-secondary">More details</button>
