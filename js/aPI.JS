@@ -50,8 +50,49 @@ const displayNews = async (value) => {
   });
   const dataCategory = await fetchNews(id);
   console.log(dataCategory);
+  dataCategory.data.forEach(element => {
+    const author = element.author.name;
+    const authorImg = element.author.img;
+    const view = element.total_view;
+    const thumbnailHeader = element.title;
+    const thumbnailImg = element.thumbnail_url;
+    const details = element.details;
 
+    const getId = document.getElementById('news-bd');
+    const div = document.createElement('div');
+    div.innerHTML = `
+    <div class="card mb-3" style="width:100%;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="${thumbnailImg}" class="img-fluid rounded-start" style="width:100%; height:100%;">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">${thumbnailHeader}</h5>
+                <p class="card-text">${details}</p>
 
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <img src="${authorImg}" alt="" style="width: 50px;">
+                        <span>${author}</span>
+                    </div>
+
+                    <div>
+                        <span>${view} </span>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-secondary">More details</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+    `;
+    getId.appendChild(div);
+  }
+  );
 }
 
 
