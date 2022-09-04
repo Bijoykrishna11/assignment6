@@ -40,6 +40,9 @@ const fetchNews = async (category_id) => {
 }
 
 const displayNews = async (value) => {
+  const getId = document.getElementById('news-bd');
+  getId.innerHTML = " ";
+
   const data = await loaditem();
   const li = data.data.news_category;
   let id;
@@ -58,9 +61,8 @@ const displayNews = async (value) => {
     const thumbnailImg = element.thumbnail_url;
     const details = element.details;
 
-    const getId = document.getElementById('news-bd');
+
     const div = document.createElement('div');
-    getId.innerHTML = " ";
     div.innerHTML = `
     <div class="card mb-3" style="width:100%;">
     <div class="row g-0">
@@ -70,7 +72,7 @@ const displayNews = async (value) => {
         <div class="col-md-8">
             <div class="card-body">
                 <h5 class="card-title">${thumbnailHeader}</h5>
-                <p class="card-text">${details}</p>
+                <p class="card-text">${details.slice(0, 150) + "...."}</p>
 
                 <div class="d-flex justify-content-between">
                     <div>
